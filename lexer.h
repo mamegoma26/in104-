@@ -4,7 +4,7 @@
 #include <stdlib.h>
 /**
 id: [a-zA-Z][a-zA-Z0-9_]*
-type: 'string'| 'number'| 'boolean'
+type: 'string'| 'number'| 'boolean'  //a adapter au theme
 declaration: {id} ':' {type} ';'
  number:[0-9]+[.0-9]*
  expression:{id} |
