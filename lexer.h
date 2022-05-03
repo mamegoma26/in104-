@@ -4,12 +4,12 @@
 #include <stdlib.h>
 /**
 id: [a-zA-Z][a-zA-Z0-9_]*
-type: 'string'| 'number'| 'boolean'  //a adapter au theme
-declaration: {id} ':' {type} ';'
+type: 'number'| 'string'| 'boolean'  //a adapter au theme
+declaration: {id} ':' {type} ';' // a modifier 
  number:[0-9]+[.0-9]*
  expression:{id} |
- assignment:{id} '=' {expression}
- print: 'print'{expression} ';'
+ assignment:{id} '=' {expression} // a modifier 
+ print: 'print'{expression} ';' // a modifier 
 */
 typedef enum {
     TOKEN_ID,
