@@ -2,6 +2,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdint.h>
+#include <string.h>
+#include <ctype.h>
+
 uint8_t *read_entry(char* filename){
     FILE *f=fopen(filename,"r");
     uint8_t *content= malloc(sizeof (2048));
@@ -19,8 +22,62 @@ uint8_t *read_entry(char* filename){
     return content;
 }
 Tokens *new_tokens(){
-
+    Tokens *tokens= malloc(sizeof (*tokens));
+    if(tokens==NULL){
+        printf("unable to allocate memory while creating tokens\n");
+        exit(1);
+    }
+    tokens->prev=NULL;
+    return tokens;
 }
-void add_token(Tokens **tokens,uint8_t *val,size_t size_val){
 
+void add_token(Tokens **tokens,uint8_t *val,size_t size_val){
+    //TODO:handle val token since size_val
+    Token token= init_token(val,size_val);
+    Tokens *new=new_tokens();
+    new->token=token;
+    new->prev=*tokens;
+    *tokens=new;
+}
+
+void display_tokens(Tokens *tokens){
+    Tokens *current=tokens;
+    printf("<Tokens [");
+    while(current->prev!=NULL){
+        printf("{token='%s',type=%s}",current->token.val, stringof_type(current->token.type));
+        current=current->prev;
+        if(current->prev!=NULL){
+            printf(", ");
+        }
+    }
+    printf("]>");
+}
+    void tokenize(Tokens **tokens,uint8_t *seq){
+        while(*seq!= '\0'){
+            if(isspace(*seq)){
+                ++seq;
+            }
+            else if(isalnum(*seq)){
+                seq=process_validstr(tokens,seq);
+            }
+            else if(isatomic(*seq)){
+                seq=process_atomic(tokens,seq);
+            }
+            else{
+                printf("syntax error: '%c' is an invalid character",*seq);
+            }
+        }
+    }
+
+uint8_t *process_validstr(Tokens **tokens, uint8_t *seq){
+    size_t i=0;
+    while(i< strlen(seq) && isalnum(seq[i])){
+        ++i;
+    }
+    add_token(tokens,seq,i);
+    return seq+i;
+}
+uint8_t *process_atomic(Tokens **tokens, uint8_t *seq){
+    add_token(tokens,seq,1);
+    return seq+1;
 }
