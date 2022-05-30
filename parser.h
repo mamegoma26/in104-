@@ -1,6 +1,6 @@
 
-#ifndef CYOL_PARSER_H
-#define CYOL_PARSER_H
+#ifndef P_CHESS_PARSER_H
+#define P_CHESS_PARSER_H
 #include <stdint.h>
 typedef struct  {
 
@@ -62,4 +62,4 @@ typedef struct AST{
     };
     struct AST *next;
 }AST;
-#endif // CYOL_PARSER_H
+#endif // P_CHESS_PARSER_H
