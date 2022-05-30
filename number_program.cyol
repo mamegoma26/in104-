@@ -1,3 +1,4 @@
+// to test the lexer 
 x:number;
 x=1;
 print x;
