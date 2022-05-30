@@ -1,5 +1,5 @@
-#indef P_CHESS_BINDER_H
-#define P_CHESS_BINDER_H
+#indef CYOL_BINDER_H
+#define CYOL_BINDER_H
 #include "visitor.h"
 #include <stdint.h>
 
@@ -32,4 +32,4 @@ void put_data(Stackframe **sf,uint8_t *id,uint8_t type,uint32_t addr);
 
 
 
-#endif // P_CHESS_BINDER   
+#endif // CYOL_BINDER   
