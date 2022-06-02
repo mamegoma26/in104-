@@ -1,4 +1,4 @@
 // to test the lexer 
-x:number;
-x=1;
+x:number clock
+x=1 clock
 print x;
